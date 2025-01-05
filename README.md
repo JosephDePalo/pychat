@@ -1,4 +1,4 @@
-# Chat Room
+# PyChat
 
 A basic chat room application built in Python to facilitate real-time communication between clients through a central server.
 
@@ -34,16 +34,22 @@ A basic chat room application built in Python to facilitate real-time communicat
 
 1. Clone the repository:
 
-  `git clone https://github.com/<your-username>/chat-room.git
-cd chat-room`
+  ```
+  git clone https://github.com/JosephDePalo/pychat
+  cd pychat
+  ```
 
 2. Run the server:
 
-  `python server.py <PORT>`
+  ```
+  python server.py <PORT>
+  ```
 
 3. Run the client:
 
-  `python client.py`
+  ```
+  python client.py <PORT>
+  ```
 
 Connect multiple clients by running client.py on different terminals or machines.
 
