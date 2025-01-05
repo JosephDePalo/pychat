@@ -1,5 +1,4 @@
 import socket, threading, sys
-from time import sleep
 
 DEFAULT_PORT = int(sys.argv[1])
 MAX_CONNS = 20

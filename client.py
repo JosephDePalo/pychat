@@ -36,7 +36,7 @@ def recv_msgs():
             print(msg, end="", flush=True)     # Print output
             print("\u001B[u", end="", flush=True)     # Jump back to saved cursor position
     except:
-        print(f"{bcolors.FAIL}Connection lost, can't receive messages.{bcolors.ENDC}")  
+        print(f"{bcolors.FAIL}\nConnection lost. Press enter to terminate.{bcolors.ENDC}")  
     finally:
         c_sock.close()
 
@@ -47,6 +47,8 @@ def send_msgs():
             if msg == "!quit":
                 raise Exception("User quit")
             c_sock.send(msg.encode())
+    except OSError:
+        pass
     except:
         c_sock.send("!quit".encode())
         print(f"{bcolors.FAIL}Quitting...{bcolors.ENDC}")
