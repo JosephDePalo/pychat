@@ -16,6 +16,8 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 context = ssl.create_default_context()
+
+# Disable hostname verification and certificate verification
 context.check_hostname = False
 context.verify_mode = ssl.CERT_NONE
 
