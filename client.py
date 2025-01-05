@@ -1,4 +1,4 @@
-import socket, threading, sys
+import socket, threading, sys, ssl
 
 DEFAULT_SERVER = "127.0.0.1"
 DEFAULT_PORT = int(sys.argv[1])
@@ -15,7 +15,12 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+context = ssl.create_default_context()
+context.check_hostname = False
+context.verify_mode = ssl.CERT_NONE
+
 c_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+c_sock = context.wrap_socket(c_sock, server_hostname=DEFAULT_SERVER)
 
 c_sock.connect((DEFAULT_SERVER, DEFAULT_PORT))
 

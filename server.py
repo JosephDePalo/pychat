@@ -1,4 +1,4 @@
-import socket, threading, sys
+import socket, threading, sys, ssl
 
 DEFAULT_PORT = int(sys.argv[1])
 MAX_CONNS = 20
@@ -15,11 +15,16 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+context.load_cert_chain(certfile="server.crt", keyfile="private.key")
+
 s_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s_sock.bind(("127.0.0.1", DEFAULT_PORT))
 
 s_sock.listen(MAX_CONNS)
+
+ss_sock = context.wrap_socket(s_sock, server_side=True)
 
 print(f"{bcolors.OKCYAN}Listening on {DEFAULT_PORT}...{bcolors.ENDC}")
 
@@ -50,7 +55,7 @@ def recv_msgs(c_sock, c_addr):
 
 try:
     while True:
-        (c_sock, c_addr) = s_sock.accept()
+        (c_sock, c_addr) = ss_sock.accept()
 
         socks.append((c_sock, c_addr))
 
