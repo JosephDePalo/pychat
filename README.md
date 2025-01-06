@@ -40,7 +40,7 @@ A basic chat room application built in Python to facilitate real-time communicat
   openssl req -newkey rsa:2048 \
     -x509 \
     -sha256 \
-    - days 3650 \
+    -days 3650 \
     -nodes \
     -out server.crt \
     -keyout private.key \
